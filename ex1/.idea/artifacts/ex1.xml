@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="ex1">
+    <output-path>$PROJECT_DIR$/out/artifacts/ex1</output-path>
+    <root id="archive" name="ex1.jar">
+      <element id="file-copy" path="$PROJECT_DIR$/src/Board.java" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/Competition.java" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/Move.java" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/Player.java" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/README" />
+    </root>
+  </artifact>
+</component>

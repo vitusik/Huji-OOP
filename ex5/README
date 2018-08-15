@@ -1,0 +1,89 @@
+vitaly1991
+
+=============================
+=      File description     =
+=============================
+
+filescript package:
+MyFileScript.java - the manager
+
+Parser.java - parses string into commands
+
+Section.java - container class
+
+Type2ErrorException.java - exception that result in the program termination
+
+filters package:
+AllFilter.java
+
+BetweenFilter.java
+
+BooleanFilter.java - skeleton for all the filters that contain boolean statements
+
+ContainsFilter.java
+
+ExecutableFilter.java
+
+FileFilter.java
+
+Filter.java - skeleton for all of the filters
+
+FilterException.java - exception that is the result of type 1 error
+
+FilterFactory.java - the factory that creates all the filters
+
+GreaterThanFilter.java
+
+HiddenFilter.java
+
+NotFilter.java
+
+PrefixFilter.java
+
+SizeFilter.java - skeleton for greater than and smaller than filters
+SmallerThanFilter.java
+
+SuffixFilter.java
+
+WritableFilter.java
+
+orders package:
+
+AbsOrder.java
+
+Order.java - skeleton for all of the orders
+
+OrderException.java - exception that is the result of type 1 error
+
+OrderFactory.java - factory that creates all the orders
+
+ReverseOrder.java
+
+SizeOrder.java
+
+TypeOrder.java
+
+=============================
+=          Design           =
+=============================
+
+I designed this ex based on the design that was given in the Tirgul 9
+
+
+=============================
+=  Implementation details   =
+=============================
+
+I think that there are no non-trivial implementation in the design because all of the code was rather simple
+the complexity came from the amount of classes and understanding how they worked together 
+
+there is no exception hierarchy because I've only created 3 one per each package,
+one that deals with filter irregularities, one that deals with order irregularities,
+and the type 2 error exception which terminates the program
+I thought about adding more exceptions to the filters package so each would fit a specific
+case, but then I would just double the amount of files in the filters package and thus creating
+a very large API since all of the exceptions are public, and therefore making the API very hard
+to understand which is a thing we try to avoid.
+
+to sort the matched files, I've used Array List, there isn't a specific reason for that choice,
+and my only motivator for my choice was an ADT that supports Collections.sort method.

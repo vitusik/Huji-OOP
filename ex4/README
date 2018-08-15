@@ -1,0 +1,29 @@
+vitaly1991
+
+=============================
+=      File description     =
+=============================
+
+AvlTree.java - include implementation for an avl tree, and two nested classes avl node and iterator
+
+=============================
+=          Design           =
+=============================
+
+I've decided to use nested classes design, each Avl tree is a BST tree built from nodes , in the case of Avl
+tree, its nodes are a little more complex then the nodes of BST tree, and this is the reason that I've decided
+not to create two super classes BST tree and BST Node, because even though they Avl tree and the Avl node
+both inherit from BST tree and tree node, I felt that it would make the API a lot more complicated, because
+I would have Avl tree that inherits from BST tree, composed of Avl Nodes which inherit from BST Node, its
+a lot simpler to have one class which contains two private nested classes AvlNode and an override for Iterator
+
+
+=============================
+=  Implementation details   =
+=============================
+
+the add method is based on the algorithm for adding a node to a BST tree, and after the new element was
+added to the tree, a node height update takes place and afterwards a reorganization of the tree occurs
+in case the balanced of the tree was broken, the same goes for the removal of a node from the tree
+after a node has been removed the heights of the nodes is updated and if there is an imbalance the tree
+get reorganized based of the type of the imbalance like RR,LL,RL,LR.

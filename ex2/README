@@ -1,0 +1,51 @@
+vitaly1991
+
+=============================
+=      File description     =
+=============================
+AggressiveSpaceship.java - contains implementation of the aggressive spaceship
+BasherSpaceship.java - contains implementation of the basher spaceship
+DrunkardSpaceship.java - contains implementation of the drunkard spaceship
+HumanSpaceship.java - contains implementation of the human spaceship
+RunnerSpaceship.java - contains implementation of the runner spaceship
+SpaceShip.java - contains implementation of the skeleton for each spaceship
+SpaceShipFactory.java - contains implementation of spaceship array creation
+SpecialSpaceship.java - contains implementation of the special spaceship
+
+
+=============================
+=          Design           =
+=============================
+
+I'v chosen to design the Spaceship class as an abstract class and all the other spaceships types extend the
+basic Spaceship, I did it this way because it felt the most intuitive way,each spaceship is a type of the
+basic spaceship, also in the future if someone would like to add another spaceship type to the game
+all he would have to implement is the doAction method thus creating a code without repetition
+
+
+=============================
+=  Implementation details   =
+=============================
+
+In the Spaceship class I've added a lot of methods, and I've decided to make almost all of them protected
+methods because the only classes that needs access to those methods are class that inherit from
+the Spaceship class.
+
+Special Spaceship - first of all I've decided that the Special Spaceship will create an harder game for
+the user, I've done it by doubling the initial hp and energy for this type of spaceship, and I've took
+the behavior of the aggressive basher and runner spaceship and fused them into one thus creating a spaceship
+that will always accelerate towards the closet enemy ship it'll detect, fire whenever the angle to the target
+is right, use the shield whenever the distance from the closet ship is low, and will try to teleport when it's
+hp will drop bellow 5.
+
+Drunkard Spaceship - this ship's driver has a chance of 1% in each round to lose it's keys to the spaceship
+meaning that the ship won't do any action during 10 rounds and only drift in space, after those 10 rounds
+the ship will enter a spin frenzy and fire throughout this phase, when this phase is completed the ship
+the driver will have a chance of 1% again losing its keys and thus repeating the process, although if the
+driver didn't lose its keys he will do a "serious move", meaning he will acquire a target and will have a
+chance to accelerate towards the target, if the angle to the target is right the ship will hae a chance
+to fire upon the target, and if the distance is close enough the ship will have a chance to turn on it's
+shields, moreover each time the drunkard tries to make a "serious move" it'll have a chance of
+spontaneously teleporting, all of those features create a pretty unpredictable opponent
+
+

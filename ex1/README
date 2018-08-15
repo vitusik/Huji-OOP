@@ -1,0 +1,40 @@
+vitaly1991
+
+=============================
+=      File description     =
+=============================
+Board.java - contains implementation of a board for a nim game
+Competition.java - contains implementation nim game competition
+Move.java - contains a class which is the move in the nim game
+Player.java - contains implementation 4 different players types : random,smart, heuristic and human
+
+
+=============================
+=          Design           =
+=============================
+
+There weren't any design issues because the API was already given
+
+
+=============================
+=  Implementation details   =
+=============================
+ I actually think that the random player was the hardest thing that was needed to be implemented, and I've
+ divided the Random player move method to 4 smaller methods,
+* the "main" that in the end returns the Move object
+* random row getter which work like this the idea is basically to get the amount of rows in the board,
+  create an array that has (number of rows) values , and then run in a loop on all the possible rows,and inside
+  each row to check if there is at least one unmarked stick, is that stick exists then the array in index
+  t will receive the row number, at the end the method will randomize a number between 0 and t
+  and the method will return the value that is inside the t index in the array
+* random left bound getter which works in a similar way to the row getter
+* random right bound getter which works on the next idea,the idea is to iterate over the row that the method
+  received, beginning in lBound as first index and iterating until the end of the sequence, which will become
+  the rBound, and finally randomize a number that is between 0 and the difference between lBound and rBound,
+  and adding it to lBound  
+
+
+
+=============================
+=    Answers to questions   =
+=============================

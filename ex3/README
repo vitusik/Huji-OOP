@@ -1,0 +1,85 @@
+vitaly1991
+
+=============================
+=      File description     =
+=============================
+
+SimpleHashSet.java - The abstract Superclass of both ChainedHashSet and OpenHashSet
+LinkedListStrings.java - Wrapper class for Linked List that consists of Strings used in Chained Hashing
+ChainedHashSet.java - Implementation of Chained Hashing
+OpenHashSet.java - Implementation of Open Hashing
+CollectionFacadeSet.java - Wrapper class that simplifies an underlying collections API
+SimpleSetPerformanceAnalyzer.java - Simple tester for the runtime of each set
+
+=============================
+=          Design           =
+=============================
+
+The design was given by API, the only change that I've added was the inclusion of the LinkedListStrings,
+which was actually implied in the exercise description.
+
+
+=============================
+=  Implementation details   =
+=============================
+
+I've implemented the ChainedHashSet by using inheritance, I simply created a wrapper class
+for Linked List of Strings, and in the actual ChainedHashSet I've created an array of those Linked Lists
+the add delete and contains methods uses the built in methods of Linked List, and I've only had to address
+the rehashing of the data structure and insuring that each element had only one copy in the data structure.
+
+The mechanism of delete in OpenHashSet is pretty simple, I've created a field within each object that was
+final String, each time an element was deleted from the hash table its place was taken by this final string
+and because of the fact that its final, no other string reference could match it because they aren't final.
+
+#These values correspond to the time it takes (in ms) to insert data1 to all data structures
+ChainedHashSet_AddData1 = 35003
+OpenHashSet_AddData1 = 109738
+TreeSet_AddData1 = 59 *Fastest
+LinkedList_AddData1 = 34061
+HashSet_AddData1 = 65
+
+#These values correspond to the time it takes (in ms) to insert data2 to all data structures
+ChainedHashSet_AddData2 = 70
+OpenHashSet_AddData2 = 39
+TreeSet_AddData2 = 67
+LinkedList_AddData2 = 17453
+HashSet_AddData2 = 24 *Fastest
+
+#These values correspond to the time it takes (in ns) to check if "hi" is contained in
+#the data structures initialized with data1
+ChainedHashSet_Contains_hi1 = 3849 *Fastest
+OpenHashSet_Contains_hi1 = 4705
+TreeSet_Contains_hi1 = 5987
+LinkedList_Contains_hi1 = 931856
+HashSet_Contains_hi1 = 11119
+
+#These values correspond to the time it takes (in ns) to check if "-13170890158" is contained in
+#the data structures initialized with data1
+ChainedHashSet_Contains_negative = 803132
+OpenHashSet_Contains_negative = 2675824
+TreeSet_Contains_negative = 2138 *Fastest
+LinkedList_Contains_negative = 1091798
+HashSet_Contains_negative = 3421
+
+#These values correspond to the time it takes (in ns) to check if "23" is contained in
+#the data structures initialized with data2
+ChainedHashSet_Contains_23 = 427 *Fastest
+OpenHashSet_Contains_23 = 855
+TreeSet_Contains_23 = 25659
+LinkedList_Contains_23 = 1283
+HashSet_Contains_23 = 30363
+
+#These values correspond to the time it takes (in ns) to check if "hi" is contained in
+#the data structures initialized with data2
+ChainedHashSet_Contains_hi2 = 2992 *Fastest
+OpenHashSet_Contains_hi2 = 2993
+TreeSet_Contains_hi2 = 5987
+LinkedList_Contains_hi2 = 468280
+HashSet_Contains_hi2 = 3422
+
+
+I believe that Open hashing is best used when all of the elemenets in the data have different hash code
+which depends of the hash function that we will use, the Chained hashing is best used when we have more then
+one element with the same hash code, because finding the Linked List that contains the element is done with
+O(1) on average and finding it in the list itself takes O(n)
