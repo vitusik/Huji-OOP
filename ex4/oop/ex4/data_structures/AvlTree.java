@@ -43,15 +43,14 @@ public class AvlTree implements Iterable<Integer> {
 	
 	/**
 	 * A copy constructor
-	 * a constructor that builds the tree a copy of an 
-	 * existing tree.
+	 * a constructor that builds the tree from an existing copy of a tree.
 	 * @param tree an AvlTree
 	 */
 	public AvlTree(AvlTree tree){
         this.root = null;
         this.size = 0;
-        for(Iterator<Integer> iterator = tree.iterator(); iterator.hasNext();){
-            add(iterator.next());
+        for(int val : tree){
+            add(val);
         }
 	}
 	
@@ -65,16 +64,14 @@ public class AvlTree implements Iterable<Integer> {
 		 
 		 AvlNode node = this.root;
 		 AvlNode father;
-		//fining the right place to insert
+		//finding the right place to insert
 		 while(true){
 			 father = node;
 			 if(node == null){
-				 AvlNode makeRoot = new AvlNode(newValue);
-                 this.root = makeRoot;
-				 node = this.root;
+                 this.root = new AvlNode(newValue);
 				 break;
 			 }
-			 // adding the value to the right 
+			 // adding the value to the right subtree of the current node
 			 else if (node.value < newValue){
 				 node = node.right;
 				 if(node == null){
@@ -84,7 +81,7 @@ public class AvlTree implements Iterable<Integer> {
 					 break;
 				 }	
 			 }
-			// adding the value to the left 
+			// adding the value to the left subtree of the current node
 			 else if (node.value > newValue){
 				 node = node.left; 
 				 if(node == null){
@@ -94,9 +91,10 @@ public class AvlTree implements Iterable<Integer> {
 					 break;
 				 }
 			 }
-			 else if (node.value == newValue)
-				 return false;
+			 // the only possibility left is that the new value exists in the tree, therefore will not be added
+			 else return false;
 		 }
+		 // after a new node has been added there is a need to update the heights of the nodes
 		 while(node != null){
              updateHeight(node);
 			 if (Math.abs(node.rightHeight-node.leftHeight) > AVL_GAP_MAX)
@@ -123,7 +121,7 @@ public class AvlTree implements Iterable<Integer> {
 				 return depth;
 			 else if (node.value < searchVal)
 				 node = node.right;
-			 else if (node.value > searchVal)
+			 else
 				 node = node.left;
 			 depth++;
 		 }
@@ -300,10 +298,8 @@ public class AvlTree implements Iterable<Integer> {
 			  return 1;
 		  if(h == 1)
 			  return 2;
-		  
 		  // formula is findMinNodes(h-1) + findMinNodes(h-2) + 1
-		  return findMinNodes(h - 1) + findMinNodes(h - 2) +
-				  1 ;
+		  return findMinNodes(h - 1) + findMinNodes(h - 2) + 1;
 	  }
 	  
 	  /**
@@ -315,27 +311,23 @@ public class AvlTree implements Iterable<Integer> {
 	  private void Organize(AvlNode node){
 		  // Divide into 4 cases
 		  if (node.leftHeight < node.rightHeight){
-			  
 			  // needs a left rotation (RR rotation)
 			  if(node.right.rightHeight >= node.right.leftHeight){
 				  LeftRotation(node);
 			  }
 			  // needs a right rotation the a left rotation (RL rotation)
-			  else if (node.right.rightHeight < 
-					  node.right.leftHeight){
+			  else{
 				  RightRotation(node.right);
 				  LeftRotation(node); 
 			  }
 		  }
 		  else if(node.leftHeight > node.rightHeight){
-			  
 			  // needs a right rotation (LL rotation)
 			  if(node.left.rightHeight <= node.left.leftHeight){
 				  RightRotation(node);
 			  }
 			  // needs a left rotation the a right rotation (LR rotation)
-			  else if (node.left.rightHeight > 
-					  node.left.leftHeight){
+			  else{
 				  LeftRotation(node.left);
 				  RightRotation(node); 
 			  }
